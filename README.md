@@ -1,4 +1,4 @@
-# Defold - PCG Random
+# Defold - PCG Random + card functions
 
 PCG Random Number Generator Native Extension for the Defold Game Engine
 
@@ -9,7 +9,7 @@ It uses [entropy](https://github.com/imneme/pcg-c/blob/master/extras/entropy.c) 
 ## Installation
 You can use PCG Random in your own project by adding this project as a [Defold library dependency](http://www.defold.com/manuals/libraries/). Open your game.project file and in the dependencies field under project add:
 
-	https://github.com/selimanac/defold-random/archive/master.zip
+	https://github.com/scriptixru/extension-defold-random-cards/archive/master.zip
 	
 ---
 
@@ -67,36 +67,6 @@ Testing entropy.
 
 ## Release Notes  
 
-1.2.6
-
-- Fix for [#6](https://github.com/selimanac/defold-random/issues/6#issue-951284950)
-- Fix for [#7](https://github.com/selimanac/defold-random/issues/7#issue-951982666)
-- Auto-complete for native extensions 
-
-1.2.5
-
-- Fix for [#4](https://github.com/selimanac/defold-random/issues/4#issue-837151758)
-
-1.2.4
-
-- `rnd.double_range(min, max)` added.
-
-1.2.3
-
-- `rnd.range` returns min if min == max.
-
-1.2.2
-
-- `rnd.range` was causing a crash when MIN is bigger than MAX. Error message added.
-
-1.2.1
-
-- Added static seed
-- Small fix.
-
-1.1
-
-- Fixed integers.
 
 1.0
 
