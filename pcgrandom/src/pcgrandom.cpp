@@ -216,9 +216,112 @@ static int check(lua_State *L)
                 printf("\n\t");
         }
         printf("\n");
+
     }
 
     return 0;
+}
+static int shuffled_deck(lua_State *L)
+{
+    // The number of expected items to be on the Lua stack
+    // once this struct goes out of scope
+    DM_LUA_STACK_CHECK(L, 1);
+
+    
+    enum
+    {
+        SUITS = 4,
+        NUMBERS = 13,
+        CARDS = 52
+    };
+    
+    char cards[CARDS];
+    int i;
+    for (i = 0; i < CARDS; ++i)
+    cards[i] = i;
+
+    for (i = CARDS; i > 1; --i)
+    {
+        int chosen = pcg32_boundedrand_r(&rng, i);
+        char card = cards[chosen];
+        cards[chosen] = cards[i - 1];
+        cards[i - 1] = card;
+    }
+
+    static const char number[] = {'A', '2', '3', '4', '5', '6', '7',
+    '8', '9', 'T', 'J', 'Q', 'K'};
+    static const char suit[] = {'h', 'c', 'd', 's'};
+
+    int DOBLE_CARDS = CARDS+CARDS;    
+    char number_suit[DOBLE_CARDS+1];
+    
+    for (i = 0; i < CARDS; ++i)
+    {
+        
+        number_suit[i] =  number[cards[i] / SUITS];
+        printf(" %c",  number_suit[i]);
+
+    }
+    
+    for (i = 0; i < CARDS; ++i)
+    {
+
+        number_suit[i+CARDS] =  suit[cards[i] % SUITS];
+        printf(" %c",  number_suit[i+CARDS]);
+
+    }
+    number_suit[DOBLE_CARDS+1] = '\0';
+    printf("\n"); 
+
+    //lua_pushstring(L, "Hello from extension!");
+    lua_pushstring(L, number_suit);
+    
+    return 1;
+}
+static int number_of_points(lua_State* L)
+{
+    // The number of expected items to be on the Lua stack
+    // once this struct goes out of scope
+    DM_LUA_STACK_CHECK(L, 1);
+
+    // Check and get parameter string from stack
+    char* str = (char*)luaL_checkstring(L, 1);
+
+    int num = 0;
+    switch (str[0]) { 
+        case 'A':
+            num = 1; 
+        break; 
+        case '2': 
+            num = 2;
+        break; 
+        case '3': 
+            num = 3;
+        break;
+        case '4': 
+            num = 4;
+        break;
+        case '5': 
+            num = 5;
+        break;
+        case '6': 
+            num = 6;
+        break;
+        case '7': 
+            num = 7;
+        break;
+        case '8': 
+            num = 8;
+        break;    
+        case '9': 
+            num = 9;
+        break;                      
+        default: 
+            num = 10;
+    }
+    // Put the reverse string on the stack
+    lua_pushnumber(L, num);
+    return 1;
 }
 
 static const luaL_reg Module_methods[] =
@@ -232,6 +335,8 @@ static const luaL_reg Module_methods[] =
         {"range", range},
         {"number", number},
         {"check", check},
+        {"shuffled_deck", shuffled_deck},
+        {"number_of_points", number_of_points},
         {0, 0}};
 
 static void LuaInit(lua_State *L)

@@ -65,4 +65,20 @@
     returns:
     - name: Random Number
       type: number
-      desc: Returns between 1-6    
+      desc: Returns between 1-6 
+
+  - name: shuffled_deck
+    type: function
+    desc: Shuffled deck of cards. 
+    returns:
+    - name: Array
+      type: char
+      desc: Shuffled deck of cards 
+
+  - name: number_of_point
+    type: function
+    desc: Number of point in BlackJack. 
+    returns:
+    - name: Number
+      type: number
+      desc: Number of point in BlackJack    

@@ -81,4 +81,37 @@ function init(self)
 
     -- system check
     rnd.check()
+
+    print('Hello-----------------')
+    local shuffled_deck = string.sub(rnd.shuffled_deck(), 1,-2)
+    --local shuffled_deck = rnd.shuffled_deck()
+    print(shuffled_deck:len())
+    print('Hello-----------------')
+    local str_cards = {}
+    --print(shuffled_deck) 
+    local i = 1
+    for c in shuffled_deck:gmatch"." do
+        -- do something with c
+        str_cards[i] = c
+        i = i+1
+    end
+    --print(str_cards)
+    for i = 1, #shuffled_deck do
+        print(str_cards[i]) 
+    end
+    print('Hello-----------------')
+    print('number_of_points:'.. rnd.number_of_points('T'))
+    print('Hello-----------------')
+
+    local sum=0;
+    for i = 1, 52 do
+        sum = sum + rnd.number_of_points(str_cards[i])
+    end
+    print('Hello-----------------')
+    print('sum_points:'.. sum)
+    print('Hello-----------------')
+
+    
+    --[[print(shuffled_deck:len())
+    print('Hello-----------------')]]
 end

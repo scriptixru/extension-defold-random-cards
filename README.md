@@ -1,4 +1,4 @@
-# Defold - PCG Random + card functions
+# Defold - PCG Random + cards functions
 
 PCG Random Number Generator Native Extension for the Defold Game Engine
 
@@ -62,12 +62,3 @@ Roll the dice. Returns between 1-6
 ###  rnd.check()
 
 Testing entropy.
-
-
-
-## Release Notes  
-
-
-1.0
-
-Initial release.
